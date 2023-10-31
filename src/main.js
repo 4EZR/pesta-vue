@@ -1,7 +1,14 @@
-import './assets/main.css'
+
 
 import { createApp } from 'vue'
 import App from './App.vue'
-import './index.css'
+import './assets/style.css'
+import router from './router'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
-createApp(App).mount('#app')
+
+const app = createApp(App).use(router).use(AOS);
+app.mount('#app');
+
+

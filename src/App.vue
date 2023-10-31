@@ -1,47 +1,63 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <transition name="slide-fade" mode="out-in">
+  <main class="overflow-hidden relative">
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+   
+    <loading v-if="load" />
+    <router-view v-else />
 
-  <main>
-    <TheWelcome />
   </main>
+  
+</transition>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script setup>
+import { ref, nextTick, onMounted, computed, onBeforeUnmount } from 'vue';
+import axios from 'axios'
+import { state } from '/src/state.js'
+import loading from '/src/components/loading.vue'
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+
+</script>
+
+<style scoped> 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+ @font-face {
+   font-family: 'Poppins';
+   src: url('@/assets/fonts/poppins.ttf') format('truetype');
+ }
+ @font-face{
+  font-family: 'bruce';
+  src:url('@/assets/fonts/Bruce Forever.ttf') format('truetype');
+ }
+  .slide-fade-enter-active {
+    transition: all 0.3s ease-out;
   }
-
-  .logo {
-    margin: 0 2rem 0 0;
+  .slide-fade-enter-from,
+  .slide-fade-leave-to {
+    transform: translateX(2em);
+    opacity: 0;
   }
+ * {
+   font-family: 'Poppins';
+ }
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
+* {scroll-behavior:  smooth !important;}
+ body {
+   font-family: 'Poppins', Arial, Helvetica, sans-serif, sans-serif;
+
+   background: linear-gradient(115deg, #570782 4.92%, #5732B1 47.15%, #5778FF 83.9%, #F8E41C 147.63%) !important;
+ }
+
+ .bg-gradient{
+  background: linear-gradient(115deg, #570782 4.92%, #5732B1 47.15%, #5778FF 83.9%, #F8E41C 147.63%) !important;
+
+ }
+ .poppins-text {
+   font-family: 'Poppins', Arial, Helvetica, sans-serif, sans-serif;
+ }
+
+
 </style>
