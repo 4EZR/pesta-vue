@@ -3,6 +3,7 @@ import HomeView from '/src/views/HomeView.vue'
 import loading from '/src/components/loading.vue'
 import register from '/src/views/RegisterView.vue'
 import rulebook from '/src/views/RulebookView.vue'
+import news from '/src/views/NewsDetailView.vue'
 import { state } from '/src/state.js'
 
 import AOS from "aos";
@@ -32,6 +33,12 @@ const routes = [
         path: '/rulebook',
         name: 'rulebook',
         component: rulebook
+    },
+    {
+        path: '/news/read/:id',
+        name: 'News',
+        component: news,
+        props: true
     }
 ]
 

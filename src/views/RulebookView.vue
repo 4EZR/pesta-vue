@@ -64,6 +64,12 @@
             </div>
 
         </div>
+        <div class="fixed bottom-0 left-0 m-10 z-50">
+            <Button color="yellow" :href="href" download target="_blank" class="text-xl font-black">
+                download
+
+            </Button>
+        </div>
        <Discord/>
     </section>
 </template>
@@ -106,8 +112,12 @@ import page2_5 from '@/assets/rulebook2/page-5.jpg';
 import page2_6 from '@/assets/rulebook2/page-6.jpg';
 import page2_7 from '@/assets/rulebook2/page-7.jpg';
 import page2_8 from '@/assets/rulebook2/page-8.jpg';
+import coswalk from '@/assets/rulebook2/rulebook_coswalk.pdf';
+import ml from '@/assets/rulebook/rulebook_ValoML.pdf'
 
 
+const href = ref('null')  ;
+href.value =ml
 const plans = [
     {
         name: 'Game',
@@ -159,6 +169,8 @@ watch(() => state.selected, (newVal, oldVal) => {
             page2_7,
             page2_8
         ]; // Change pages to the second set of pages
+        href.value =coswalk;
+       
     } else {
         state.pages = [
             page_1,
@@ -175,6 +187,8 @@ watch(() => state.selected, (newVal, oldVal) => {
             page_12,
             page_13
         ]; // Change pages to the original set of pages
+     
+        href.value = ml;
     }
 });
 

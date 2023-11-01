@@ -51,6 +51,7 @@
         </div>
 
         <Discord />
+        <social />
     </section>
 
     <section class="divider-2 p-8" v-if="isLoading">
@@ -168,7 +169,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 ">
 
 
-                <div class="md:col-span-2  drop-shadow" data-aos="fade-up" data-aos-duration="800"
+                <div class="md:col-span-2  drop-shadow-md" data-aos="fade-up" data-aos-duration="800"
                     data-aos-easing="ease-in-out">
                     <!-- <swiper class="swiper-test " :modules="modules" :slides-per-view="1" navigation :space-between="8"
                      :rewind="true">
@@ -198,7 +199,8 @@
                                 <p class="text-4xl font-black uppercase text-white">{{ news[0].news_title }}</p>
                                 <p class="text-xl  mb-2 text-white">{{ news[0].news_desc }}</p>
 
-                                <Button color="yellow" class='  text-center '>
+                               
+                                <Button color="yellow" class=' text-center ' @click="this.$router.push({ name: 'News', params: { id: news[0].id } })">
                                     Read More
                                 </Button>
 
@@ -213,15 +215,15 @@
                     data-aos-easing="ease-in-out">
 
                     <!-- Scroll Content -->
-                    <div class=" drop-shadow" v-for="(newsitem, index) in news.slice(1)">
+                    <div class=" drop-shadow-md" v-for="(newsitem, index) in news.slice(1)">
                         <!-- Your news item markup -->
                         <img class="object-cover h-64 w-full" :src="newsitem.news_image_url">
                         <div class="p-5 bg-white">
                             <h2 class="text-xl font-bold uppercase text-[#570782]">{{ newsitem.news_title }}</h2>
                             <p class="text-lg mb-5">{{ newsitem.news_desc }}</p>
-                         
-                            
-                            <Button color="purple" class='  text-center '>
+
+
+                            <Button color="purple" class=' text-center ' @click="this.$router.push({ name: 'News', params: { id: newsitem.id } })">
                                 Read More
                             </Button>
                         </div>
@@ -267,8 +269,7 @@
                     <p class="text-end text-white me-3 p-0">Have questions? Ask directly on our Whats App CS :
                         +6281514474083
                     </p>
-                    <Button color="yellow" class='m-0 flex-nowrap text-center flex'
-                        href="https://api.whatsapp.com/send?phone=6281514474083" target="_blank">
+                    <Button color="yellow" class='m-0 flex-nowrap text-center flex'  target="_blank">
 
                         Contact Us
                     </Button>
@@ -288,14 +289,15 @@
 
 
 
+
     </section>
+    <Footer v-if="isLoading" />
 
-
-    <section id="loading" :class="{ 'hidden': isLoading }" class="h-screen z-0 overflow-y-hidden z-1 z-1">
+    <section id="loading" :class="{ 'hidden': isLoading }" class="min-h-screen z-0 overflow-y-hidden z-1 z-1">
         <div class="z-10 loading-effect overflow-x-hidden">
             <div class="flex h-full ">
                 <div
-                    class="w-full md:w-1/2 bg-cover  h-screen z-0 overflow-y-hidden z-1  md:bg-no-repeat md:bg-contain hero">
+                    class="w-full md:w-1/2 bg-cover  min-h-screen z-0 overflow-y-hidden z-1  md:bg-no-repeat  md:bg-contain xl:bg-cover hero">
                     <div class="">
                         <div class="md:mt-16 flex justify-center  items-center min-h-screen">
                             <div>
@@ -365,12 +367,12 @@ import {
     ListboxOption,
 } from '@headlessui/vue';
 import Navbar from '@/components/navbar.vue';
-
+import Footer from '@/components/footer.vue';
 import Discord from '@/components/discord.vue';
 import sponsor1 from '@/assets/sponsor-1.png';
 import sponsor2 from '@/assets/sponsor-2.png';
 import sponsor3 from '@/assets/sponsor-3.svg';
-
+import social from '@/components/social.vue'
 import faq2 from '@/assets/faq2.svg';
 
 
